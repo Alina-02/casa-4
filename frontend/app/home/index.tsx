@@ -14,9 +14,10 @@ const HomeScreen = () => {
   };
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 items-center justify-center px-6 py-10 space-y-8">
-        {/*<CircularProgress size={250} strokeWidth={25} value={1} />*/}
-
+      <View className="flex-1 items-center justify-center px-6 py-8 space-y-8">
+        <View className="bg-pink_main rounded-full justify-center items-center w-[300px] h-[300px]">
+          <View className="bg-white rounded-full w-[250px] h-[250px]" />
+        </View>
         <OrangeButton
           text="Añadir puntos"
           onPress={() => router.push("/add")}

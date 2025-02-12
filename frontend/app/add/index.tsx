@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { ActivityModal } from "@/components/Modals/AddPointsModal";
 import PinkButton from "@/components/Buttons/PinkButton";
 import { router } from "expo-router";
-import Info from "../../assets/icons/info.svg";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const activities = [
   { id: 1, title: "Juegos Nivel 1", points: 7 },
@@ -50,18 +50,19 @@ export default function AddScreen() {
     <SafeAreaView className="flex-1 bg-pink_light">
       <View className="flex-1 px-6 pt-8">
         {/* Header */}
-        <View className="flex-row items-center mb-6 justify-center">
+        <View className="flex-row items-center mb-6 relative">
           <TouchableOpacity
             onPress={() => router.push("/home")}
-            className="mr-4"
+            className="absolute left-0 z-10"
           >
-            <Info width={50} height={50} fill="black" />
+            <Ionicons name="chevron-back" size={24} color="#D164C1" />
           </TouchableOpacity>
-          <Text className="text-xl text-pink_dark text-center font-semibold">
-            Añadir
-          </Text>
+          <View className="flex-1 items-center">
+            <Text className="text-xl text-pink_dark text-center font-semibold">
+              Añadir
+            </Text>
+          </View>
         </View>
-
         {/* Activities List */}
         <ScrollView className="flex-1">
           {activities.map((activity) => (
