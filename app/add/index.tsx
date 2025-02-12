@@ -1,8 +1,16 @@
 "use client";
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import { useState } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
 import { ActivityModal } from "@/components/Modals/AddPointsModal";
 import PinkButton from "@/components/Buttons/PinkButton";
+import { router } from "expo-router";
+import Info from "../../assets/icons/info.svg";
 
 const activities = [
   { id: 1, title: "Juegos Nivel 1", points: 7 },
@@ -43,6 +51,12 @@ export default function AddScreen() {
       <View className="flex-1 px-6 pt-8">
         {/* Header */}
         <View className="flex-row items-center mb-6 justify-center">
+          <TouchableOpacity
+            onPress={() => router.push("/home")}
+            className="mr-4"
+          >
+            <Info width={50} height={50} fill="black" />
+          </TouchableOpacity>
           <Text className="text-xl text-pink_dark text-center font-semibold">
             Añadir
           </Text>
