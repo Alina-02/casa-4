@@ -1,4 +1,4 @@
-import { View, SafeAreaView } from "react-native";
+import { View, SafeAreaView, Text } from "react-native";
 import React, { useState } from "react";
 import { router } from "expo-router";
 import OrangeButton from "@/components/Buttons/OrangeButton";
@@ -15,8 +15,12 @@ const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 items-center justify-center px-6 py-8 space-y-8">
-        <View className="bg-pink_main rounded-full justify-center items-center w-[300px] h-[300px]">
-          <View className="bg-white rounded-full w-[250px] h-[250px]" />
+        <View className="h-1/2">
+          <View className="bg-pink_main rounded-full justify-center items-center w-[300px] h-[300px]">
+            <View className="bg-white rounded-full w-[260px] h-[260px] justify-center items-center">
+              <Text className="text-6xl font-bold text-pink_very_dark">1</Text>
+            </View>
+          </View>
         </View>
         <OrangeButton
           text="Añadir puntos"

@@ -55,6 +55,9 @@ module.exports = {
         white: "#FFFFFF",
         black: "#000000",
       },
+      linearGradientColors: {
+        "pink-orange": ["#E87D27", "#FFDEFD"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

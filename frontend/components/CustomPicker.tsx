@@ -22,10 +22,10 @@ export function CustomPicker({
       animationType="slide"
       onRequestClose={onClose}
     >
-      <View className="flex-1 justify-end bg-black/50">
-        <View className="bg-white rounded-t-3xl">
-          <View className="p-4 border-b border-gray-200">
-            <Text className="text-lg font-medium text-center text-pink_dark">
+      <View className="flex-1 justify-end bg-black/50 mb-2">
+        <View className="bg-pink_light rounded-t-3xl">
+          <View className="p-4 border-b border-pink_main">
+            <Text className="text-xl font-bold text-center text-pink_dark">
               {title}
             </Text>
           </View>
@@ -34,20 +34,20 @@ export function CustomPicker({
             keyExtractor={(item) => item}
             renderItem={({ item }) => (
               <TouchableOpacity
-                className="p-4 border-b border-gray-100"
+                className="p-4 border-b border-pink_main"
                 onPress={() => {
                   onSelect(item);
                   onClose();
                 }}
               >
-                <Text className="text-center text-gray-700 text-lg">
+                <Text className="text-center text-peach_dark text-lg">
                   {item}
                 </Text>
               </TouchableOpacity>
             )}
           />
-          <TouchableOpacity className="p-4 bg-gray-100" onPress={onClose}>
-            <Text className="text-center text-gray-700 font-medium">
+          <TouchableOpacity className="p-4 bg-pink_light" onPress={onClose}>
+            <Text className="text-center text-pink_very_dark font-bold text-xl">
               Cancelar
             </Text>
           </TouchableOpacity>
