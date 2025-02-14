@@ -1,11 +1,26 @@
 import EventDBSchema from "../models/EventDBSchema";
 import { recalculateUserPoints } from "./users.service";
+import mongoose from "mongoose";
 
 export const createEvent = async (eventData: any) => {
-  const newEvent = await EventDBSchema.create(eventData);
-  await recalculateUserPoints(eventData.user);
-  return newEvent
+  try {
+    // Convertir IDs a ObjectId
+    const eventPayload = {
+      ...eventData,
+      user: new mongoose.Types.ObjectId(eventData.user),
+      winner: eventData.winner ? new mongoose.Types.ObjectId(eventData.winner) : null,
+      loser: eventData.loser ? new mongoose.Types.ObjectId(eventData.loser) : null,
+    };
+
+    const newEvent = await EventDBSchema.create(eventPayload);
+    await recalculateUserPoints(eventData.user);
+    
+    return newEvent;
+  } catch (error) {
+    throw new Error("Error al crear el evento: " + error.message);
+  }
 };
+
 
 export const getEventById = async (id: string) => {
   return await EventDBSchema.findById(id).populate("user winner loser");
