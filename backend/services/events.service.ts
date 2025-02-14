@@ -1,7 +1,10 @@
 import EventDBSchema from "../models/EventDBSchema";
+import { recalculateUserPoints } from "./users.service";
 
 export const createEvent = async (eventData: any) => {
-  return await EventDBSchema.create(eventData);
+  const newEvent = await EventDBSchema.create(eventData);
+  await recalculateUserPoints(eventData.user);
+  return newEvent
 };
 
 export const getEventById = async (id: string) => {
@@ -13,12 +16,21 @@ export const getAllEvents = async () => {
 };
 
 export const updateEvent = async (id: string, updateData: any) => {
-  return await EventDBSchema.findByIdAndUpdate(id, updateData, { new: true });
+  const updatedEvent = await EventDBSchema.findByIdAndUpdate(id, updateData, { new: true });
+  if (updatedEvent) {
+    await recalculateUserPoints(updatedEvent.user.toString()); 
+  }
+  return updatedEvent;
 };
-
-export const deleteEvent = async (id: string) => {
-  return await EventDBSchema.findByIdAndDelete(id);
-};
+  
+  export const deleteEvent = async (id: string) => {
+    const event = await EventDBSchema.findById(id);
+    if (!event) throw new Error("Evento no encontrado");
+  
+    await EventDBSchema.findByIdAndDelete(id);
+    await recalculateUserPoints(event.user.toString());
+    return event;
+  };
 
 export const getEventsByUser = async (userId: string) => {
   return await EventDBSchema.find({ user: userId }).populate("user winner loser");

@@ -58,3 +58,14 @@ export const removeUserFromGroup = async (groupId: string, userId: string) => {
 
   return group;
 };
+
+export const recalculateGroupPoints = async (groupId: string) => {
+  const group = await GroupDBSchema.findById(groupId);
+  if (!group) throw new Error("Grupo no encontrado");
+
+  const users = await UserDBSchema.find({ team: groupId });
+  const totalPoints = users.reduce((acc, user) => acc + user.points, 0);
+
+  group.points = totalPoints;
+  await group.save();
+};
