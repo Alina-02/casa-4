@@ -27,4 +27,4 @@ GroupSchema.set('toJSON', {
 	}
 })
 
-export default GroupSchema
+export default mongoose.model("Group", GroupSchema);

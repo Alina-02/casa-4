@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
 		type : Number,
 		required : true,
 	},
-    team: {
+    group: {
 		type : mongoose.Schema.Types.ObjectId,
 		ref : 'Group'
 	},
@@ -29,4 +29,4 @@ UserSchema.set('toJSON', {
 	}
 })
 
-export default UserSchema
+export default mongoose.model("User", UserSchema);
