@@ -5,7 +5,8 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI as string, {
+    const connectionURI = "mongodb+srv://fullstack:<db_password>@cluster0.dq6k6c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0".replace("<db_password>",process.env.MONGO_PASSWORD as string);
+    const conn = await mongoose.connect(connectionURI, {
       dbName: "myDatabase", // Opcional: Nombre específico de la base de datos
     });
 

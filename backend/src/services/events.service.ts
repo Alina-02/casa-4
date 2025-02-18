@@ -17,7 +17,11 @@ export const createEvent = async (eventData: any) => {
     
     return newEvent;
   } catch (error) {
-    throw new Error("Error al crear el evento: " + error.message);
+    if (error instanceof Error) {
+      throw new Error("Error al crear el evento: " + error.message);
+    } else {
+      throw new Error("Error al crear el evento: error desconocido");
+    }
   }
 };
 
