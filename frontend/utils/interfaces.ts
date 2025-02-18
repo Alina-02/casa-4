@@ -1,8 +1,10 @@
 export interface User {
-  name: string;
+  username: string;
+  email: string;
   points: number;
   group: string;
   password?: string;
+  id?: string;
 }
 
 export interface Event {
